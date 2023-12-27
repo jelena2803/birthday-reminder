@@ -4,15 +4,15 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+/* html, body, #root {
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
   margin: 0 auto;
-}
+} */
 
-body > #root > div {
+/* body > #root > div {
   height: 100vh;
-}
+} */
 
 body {
   background-color: rgb(176, 227, 240);
@@ -24,7 +24,7 @@ body {
   width: 100vw;
 }
 
-form {
+form, .birthdayList {
   background-color: rgb(130, 165, 70);
   max-width: 400px;
   margin: 15px auto;
@@ -52,7 +52,7 @@ button {
   display: block;
 }
 
-.react-datepicker {
+.react-datepicker, .listItem {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -85,8 +85,37 @@ h1 {
   color: white;
 } */
 
+.birthdayList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listItem {
+  width: 45%;
+  margin: 10px auto;
+  background-color: rgb(176, 227, 240);
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.listItem p {
+  padding: 5px;
+}
+
+.bName {
+  font-weight: bold;
+}
+
 .App-link {
   color: #61dafb;
 }
 
+@media screen and (max-width: 480px) {
+  .birthdayList {
+    display: block;
+  }
 
+  form, .birthdayList {
+    width: 350px;
+}
+}
