@@ -6,7 +6,9 @@ const List = (props) => {
 	// return people.map((item) => {
 	// 	return <p key={item.id}>{item.name}</p>
 	// })
-    return <p>List people's names</p>
+    return (
+		<p>List people's names</p>
+	)
 }
 
 export default List
