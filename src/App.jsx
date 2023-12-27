@@ -17,6 +17,10 @@ function getDate() {
   return `${month} ${date} ${year}`;
 }
 
+const handleSubmit = event => {
+  event.preventDefault();
+}
+
 function App() {
   const [newName, setNewName] = useState("")
   const [nameList, setNameList] = useState([])
@@ -45,7 +49,7 @@ function App() {
       {/* <Date/> */}
       <h3>Today is {currentDate}</h3>
       
-      <form >
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">New Birthday</label>
           <input value={newName} onChange={e => setNewName(e.target.value)} type="text" id="name" placeholder="Enter a name"/>
@@ -66,7 +70,7 @@ function App() {
             }}
           >
         
-        <select
+        <select id="selectedMonth"
               value={allMonths[getMonth(date)]}
               onChange={({ target: { value } }) =>
                 changeMonth(allMonths.indexOf(value))
@@ -79,7 +83,7 @@ function App() {
               ))}
             </select>
 
-            <select
+            <select id="selectedYear"
               value={getYear(date)}
               onChange={({ target: { value } }) => changeYear(value)}
             >
@@ -95,7 +99,7 @@ function App() {
         onChange={(date) => setStartDate(date)}
       />
 
-        <button>Add Birthday</button>
+        <button type="submit">Add Birthday</button>
 
       </form>
 
