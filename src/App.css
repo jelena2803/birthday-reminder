@@ -1,3 +1,8 @@
+/* :root {
+  --primbcolor: #B0E3F0;
+  --secbcolor: #91A7D1;
+} */
+
 * {
   margin: 0;
   padding: 0;
@@ -5,27 +10,34 @@
 }
 
 /* html, body, #root {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   margin: 0 auto;
 } */
-
+html {
+  width: 100vw;
+  overflow: auto;
+}
 /* body > #root > div {
   height: 100vh;
 } */
 
 body {
-  background-color: rgb(176, 227, 240);
+  min-height: 100%;
+  width: 100vw;
+  background-color: #b0e3f0;
   font-family: "Helvetica Neue", helvetica, arial, sans-serif;
 }
 
 .App {
   text-align: center;
   width: 100vw;
+  overflow: auto;
 }
 
-form, .birthdayList {
-  background-color: rgb(130, 165, 70);
+form,
+.birthdayList {
+  background-color: #91a7d1;
   max-width: 400px;
   margin: 15px auto;
   padding: 10px;
@@ -33,15 +45,17 @@ form, .birthdayList {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-form > button, input {
+form > button,
+input {
   border-radius: 8px;
   border: none;
   padding: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-#name, button {
-margin: 10px auto;
+#name,
+button {
+  margin: 10px auto;
 }
 
 #name {
@@ -52,7 +66,8 @@ button {
   display: block;
 }
 
-.react-datepicker, .listItem {
+.react-datepicker,
+.listItem {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -66,8 +81,9 @@ button {
   padding: 5px 8px 0px 8px !important;
 }
 
-h1, h3 {
- padding: 5px;
+h1,
+h3 {
+  padding: 5px;
 }
 
 h1 {
@@ -93,7 +109,7 @@ h1 {
 .listItem {
   width: 45%;
   margin: 10px auto;
-  background-color: rgb(176, 227, 240);
+  background-color: #99c6e3;
   padding: 5px;
   border-radius: 8px;
 }
@@ -115,7 +131,13 @@ h1 {
     display: block;
   }
 
-  form, .birthdayList {
-    width: 350px;
-}
+  form,
+  .birthdayList {
+    /* width: 350px; */
+    margin: 15px auto;
+  }
+
+  .listItem {
+    width: 80%;
+  }
 }
