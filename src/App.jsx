@@ -98,7 +98,7 @@ function App() {
 
             <select id="selectedYear"
               value={getYear(date)}
-              onChange={({ target: { value } }) => console.log(changeYear(value))}
+              onChange={({ target: { value } }) => changeYear(value)}
             >
               {years.map((option) => (
                 <option key={option} value={option}>
