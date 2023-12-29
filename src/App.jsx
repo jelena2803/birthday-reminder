@@ -8,7 +8,7 @@ import range from "lodash/range";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-function getDate() {
+function getCurrentDate() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const today = new Date();
   const month = months[today.getMonth()];
@@ -17,14 +17,12 @@ function getDate() {
   return `${month} ${date} ${year}`;
 }
 
-const handleSubmit = event => {
-  event.preventDefault();
-}
+
 
 function App() {
   const [newName, setNewName] = useState("")
   const [nameList, setNameList] = useState([])
-  const [currentDate, setCurrentDate] = useState(getDate());
+  const [currentDate, setCurrentDate] = useState(getCurrentDate());
   const allMonths = [
     "January",
     "February",
@@ -43,19 +41,31 @@ function App() {
   const [startDate, setStartDate] = useState(new Date());
   const years = range(1900, getYear(new Date()) + 1, 1);
 
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(newName, allMonths[startDate.getMonth()], startDate.getDate(), startDate.getFullYear())
+    console.log(event.target.value);
+  }
+  
+  function handleNewBdayInput(e) {
+  return setNewName(e.target.value)
+  } 
+
+
+
   return (
     <div className="App">
       <h1>Birthday reminder</h1>
-      {/* <Date/> */}
       <h3>Today is {currentDate}</h3>
       
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">New Birthday</label>
-          <input value={newName} onChange={e => setNewName(e.target.value)} type="text" id="name" placeholder="Enter a name"/>
+          <input value={newName} onChange={handleNewBdayInput} type="text" id="name" placeholder="Enter a name"/>
         </div>
 
-        <DatePicker  
+        <DatePicker
       showIcon
         renderCustomHeader={({
           date,
@@ -72,20 +82,23 @@ function App() {
         
         <select id="selectedMonth"
               value={allMonths[getMonth(date)]}
-              onChange={({ target: { value } }) =>
+              onChange={
+                ({ target: { value } }) =>
                 changeMonth(allMonths.indexOf(value))
               }
+             
             >
               {allMonths.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
               ))}
+
             </select>
 
             <select id="selectedYear"
               value={getYear(date)}
-              onChange={({ target: { value } }) => changeYear(value)}
+              onChange={({ target: { value } }) => console.log(changeYear(value))}
             >
               {years.map((option) => (
                 <option key={option} value={option}>
