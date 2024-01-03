@@ -41,85 +41,95 @@ function App() {
   const [startDate, setStartDate] = useState(new Date());
   const years = range(1900, getYear(new Date()) + 1, 1);
 
+  //birthdays data
+  let [bdays, setBdays] = useState([]);
+  // let [bdate, setBdate] = useState(null);
+  // let [bmonth, setBmonth] = useState("");
+  // let [byear, setByear] = useState(null);
+
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(newName, allMonths[startDate.getMonth()], startDate.getDate(), startDate.getFullYear())
-    console.log(event.target.value);
+    // setBmonth(allMonths[startDate.getMonth()]);
+    // setBdate(startDate.getDate());
+    // setByear(startDate.getFullYear());
+    const newBday = { id: bdays.length + 1, name: newName, month: allMonths[startDate.getMonth()], day: startDate.getDate(), year: startDate.getFullYear() };
+    setBdays([...bdays, newBday])
+    console.log(newBday, bdays);
+    setNewName("");
+    setStartDate(new Date());
   }
-  
+
   function handleNewBdayInput(e) {
-  return setNewName(e.target.value)
-  } 
-
-
+    return setNewName(e.target.value)
+  }
 
   return (
     <div className="App">
       <h1>Birthday reminder</h1>
       <h3>Today is {currentDate}</h3>
-      
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">New Birthday</label>
-          <input value={newName} onChange={handleNewBdayInput} type="text" id="name" placeholder="Enter a name"/>
+          <input value={newName} onChange={handleNewBdayInput} type="text" id="name" placeholder="Enter a name" />
         </div>
 
         <DatePicker
-      showIcon
-        renderCustomHeader={({
-          date,
-          changeMonth,
-          changeYear
-        }) => (
-          <div
-            style={{
-              margin: 10,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-        
-        <select id="selectedMonth"
-              value={allMonths[getMonth(date)]}
-              onChange={
-                ({ target: { value } }) =>
-                changeMonth(allMonths.indexOf(value))
-              }
-             
+          showIcon
+          renderCustomHeader={({
+            date,
+            changeMonth,
+            changeYear
+          }) => (
+            <div
+              style={{
+                margin: 10,
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
-              {allMonths.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
 
-            </select>
+              <select id="selectedMonth"
+                value={allMonths[getMonth(date)]}
+                onChange={
+                  ({ target: { value } }) =>
+                    changeMonth(allMonths.indexOf(value))
+                }
 
-            <select id="selectedYear"
-              value={getYear(date)}
-              onChange={({ target: { value } }) => changeYear(value)}
-            >
-              {years.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-      />
+              >
+                {allMonths.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+
+              </select>
+
+              <select id="selectedYear"
+                value={getYear(date)}
+                onChange={({ target: { value } }) => changeYear(value)}
+              >
+                {years.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+        />
 
         <button type="submit">Add Birthday</button>
 
       </form>
 
       <h3>Today's birthdays</h3>
-      
+
       <List />
-      
+
     </div>
   );
 }
